@@ -14,7 +14,8 @@
 ;; GNU General Public License for more details.
 
 ;; Author: David Mazieres
-;; Version: 0
+;; Updated 3/20/21: Adam Doupe
+;; Version: 0.1
 
 ;;; Comentary:
 ;;
@@ -26,7 +27,7 @@
 ;; (autoload 'hotcrp-mode "hotcrp-mode" nil t)
 ;; (autoload 'hotcrp-fetch "hotcrp-mode" nil t)
 ;; (add-to-list 'magic-mode-alist
-;;	     '("\\`==\\+== .* Paper Review Form" . hotcrp-mode))
+;;	     '("\\`==\\+== .* Review Form" . hotcrp-mode))
 ;;
 ;; Then use M-x hotcrp-fetch to get your offline review form.
 ;;
@@ -68,7 +69,7 @@
 
 (defconst hotcrp-font-lock-keywords
   '(
-    ("\\(\n\\|\\`\\)==\\+== .*"
+    ("==\\(\\+\\|\\*\\)== .*"
      (0 '(face font-lock-type-face hotcrp-read-only t)))
     ("^==\\+== \\(Paper #\\([0-9]+\\)\\)"
      (1 (let* ((paper (match-string-no-properties 2)))
@@ -430,7 +431,7 @@ hotcrp-fetch always prompts for the URL."
 (defun hotcrp-extract-url ()
   (save-excursion
     (goto-char (point-min))
-    (unless (looking-at "==\\+== .*Paper Review Form")
+    (unless (looking-at "==\\+== .*Review Form")
       (error "Buffer does not start with paper review form"))
     (forward-line)
     (let (last)
@@ -559,7 +560,7 @@ navigate the the web page containing everybody else's reviews, or
 
 (and (boundp 'magic-mode-alist)
      (add-to-list 'magic-mode-alist
-		  '("\\`==\\+== .* Paper Review Form" . hotcrp-mode)))
+		  '("\\`==\\+== .* Review Form" . hotcrp-mode)))
 
 (provide 'hotcrp-mode)
 
