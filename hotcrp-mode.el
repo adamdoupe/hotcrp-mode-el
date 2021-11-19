@@ -81,7 +81,7 @@
 		   (substitute-command-keys hotcrp-paper-help-echo)
 		 hotcrp-local-map ,hotcrp-paper-map))
 	t))
-    ("^==-== .*" (0 '(face font-lock-comment-face)))))
+    ("^==-==.*" (0 '(face font-lock-comment-face)))))
 
 (defun hotcrp-url-encode (str)
   (mapconcat
